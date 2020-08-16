@@ -6,11 +6,14 @@ var questionprint = '';
 var questions=[];                                        //objecto  para usar 
 //var objectanswer=[];                                  //objeto para las answer sin uso
 //SEARCH 
-var search=document.querySelector("#formulario");
+var search=document.querySelector("#buscar_1");
 search.addEventListener("click",(e)=>{
-console.log("foco");
+//alert("s"); 
+//console.log("foco");
 
-window.location.href="C:/wamp/www/senanswer2/index_search.html";
+//window.location.href="C:/wamp/www/senanswer2/index_search.html";
+//window.location.href="http://localhost/senanswer2/index_search.html";
+window.location.replace("http://localhost/senanswer2/index_search.html");
 
 });
 
@@ -54,7 +57,7 @@ function colocarPregunta() {
         
 
         questionprint += '<hr> '+questions[i].question + '\n <button id="'+i+'" style="font-size:xx-small;border-radius:5px; border:none; "   type="button" onclick="mostrarinput('+i+');">RESPONDER!'
-        +' </button> <button class="b_enviar" id="enviar_'+i+'" type="button" style="display:inline;display:none;" onclick="guardarrespuesta('+i+')">ENVIAR!</button> <input type="file" class="btn btn-default" name="file" id="file_'+i+'"> <br>'+
+        +' </button> <button class="b_enviar" id="enviar_'+i+'" type="button" style="display:inline;display:none;" onclick="guardarrespuesta('+i+')">ENVIAR!</button> <form enctype="multipart/form-data"> <input type="file" class="btn btn-default" name="file" id="file_'+i+'"> </form> <br>'+
         '<textarea  class="textarea" style="display:none; " rows="3" cols="50" id="texto_'+i+'">'+mostraranswer+'</textarea>'; 
             
         
@@ -76,8 +79,8 @@ function mostrarinput( iterador){                    //mostar el textarea y el o
     document.getElementById(texto).style.display='block';
     
     
-    var file=document.querySelector(".file");
-    file.style.display='inline';
+    /*var file=document.querySelector(".file");   delete
+    file.style.display='inline';*/
 
     
     
@@ -98,13 +101,32 @@ function guardarrespuesta(iterador){            //
     var archivo="file_"+iterador;
     var file=document.querySelector("#"+archivo).files[0];
     var formdata=new FormData();
+    var nameimg;
+    formdata.append("file",file);
+
     //var url2 =URL.createObjectURL(file);
     //if(!url2) element.image=null;
     //else{element.image=url2;}
     if(file) {
-        var url2 =URL.createObjectURL(file);
+       /*var url2 =URL.createObjectURL(file);*/
+       var url2=file.name;
+       
+       var path;
+       fetch("http://localhost:3700/jose/uploadimg",{
+           method:'post',
+           body:formdata
+       })
+       .then(response=>response.json())
+       .catch(err =>{console.log(err)})
+       .then(response =>{ 
+            console.log('success img',response); 
+             console.log(response.file.name);
+            nameimg=response.file.name;
+        });
+
+      
     }else{
-        url2=null;
+      url2=null;
     }
    // formdata.append("file".file,file.name);
 
@@ -129,7 +151,7 @@ function guardarrespuesta(iterador){            //
        
     });
     //console.log('success:',response.question._id);
-    console.log(file,"aqui",url2);
+    //console.log(file,"aqui",url2);
     console.log(element);
 }
 

@@ -17,7 +17,7 @@ var search=document.querySelector("#formulario");
 //console.log(search);
 search.addEventListener("submit",(e)=>{
 div.innerHTML=" ";   
-alert("in search");
+//alert("in search");
 e.preventDefault();
 console.log(e);
 var text=e.target[0].value;
@@ -27,7 +27,7 @@ console.log(text);
 //getquestion(text)
 
 
-var url='http://localhost:3700/jose/questions/';
+var url='http://localhost:3700/jose/questions/:?text='+text+'';
     fetch(url,{
         method:"get",
 
@@ -44,29 +44,31 @@ function probar (object,buscar){
  var template;
  for (var i=0;i<=object.questions.length;i++) {
             
-         var boolean=object?.questions[i]?.question.includes(buscar);
+    var boolean=object?.questions[i]?.question.includes(buscar);
           
-     if(boolean==true){
+    if(boolean==true){
         var newdiv=document.createElement("div");
         var newh=document.createElement("h3");
         var newp=document.createElement("p");
         var newspan=document.createElement("span");
         var newimage=document.createElement("img");
-        /*var pregunta=object.questions[i].question;
-        var respuesta=object.questions[i].answer;
-        var fecha=object.questions[i].date;
-        var image=object.questions[i].image;*/
         newh.innerHTML=object.questions[i].question;
         newp.innerHTML=object.questions[i].answer;
         newspan.innerHTML=object.questions[i].date;
-        //var src=object.questions[i].image
+        var src=object.questions[i].image                 //la imagen
         newdiv.setAttribute("class","divcontent");
         newh.setAttribute("id","quest_"+i+"");
         newh.setAttribute("onclick","response("+i+")");
         newp.setAttribute("id","ans_"+i+"");
         newp.setAttribute("style","display:none");
-        //newimage.setAttribute("src",src)
-        newp.append(newspan);
+        //newimage.setAttribute("src","C:/wamp/www/senanswer/loadimage/"+src+"");
+        newimage.setAttribute("src","http://localhost/senanswer/loadimage/"+src+"");
+        if(!src){
+            newp.append(newspan);
+        }else{
+            newp.append(newspan,newimage);
+        }                 
+        //newp.append(newspan,newimage);
         newdiv.append(newh,newp);
         //newdiv.innerHTML="hola que mas";
         //alert("si");
@@ -91,7 +93,24 @@ function response(iterar){
   //document.querySelector("#ans_"+iterar+"").sty;
    //showanswer.style.display='inline';
   // document.getElementById(showanswer).style?.display='block';
-  var probar= document.querySelector("#ans_"+iterar+"");
-  probar.removeAttribute("style");
+  var quitarans= document.querySelector("#ans_"+iterar+"");
+  quitarans.removeAttribute("style");
+
+  var probar=document.querySelector("#ans_"+iterar+" img");
+  console.log(probar);
+  probar.addEventListener("click",(e)=>{
+     // alert("click");
+      var url =e.target.src;
+      window.open(""+url+"");
+ 
+     console.log(e);
+     //console.log(e.srcElement.attributes.currentSrc);
+     console.log(e.target.src);
+  });
+
+
+
+
+
   
 }

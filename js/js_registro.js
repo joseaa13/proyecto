@@ -85,3 +85,15 @@ function validar_registro(){
 }
 
 }*/
+//scroll
+var rise=document.querySelector("#rise");
+rise.addEventListener("click",(e)=>{
+    /*document.querySelector("html").style.scrollTop="0px"
+    document.querySelector("body").style.scrollTop="0px";*/
+    window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+  
+});
