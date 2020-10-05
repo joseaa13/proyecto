@@ -84,8 +84,30 @@ function validar_registro(){
    return false;
 }
 
-}*/
+}
+
+php
+///*  echo"entro if"; /*echo "<script> console.log('redirect');
+         //       window.location.href='file:///C:/Users/Eider%20Arango/Desktop/proyecto/index_proye.html';</script>";
+         //       exitt*
+
+// echo "<script> location.href='file:///C:/wamp/www/senanswer2/index_proye.html';</script>";
+
+*/
 //scroll
+/*fetch("http://localhost/senanswer2/open_index.php",{
+           method:'get',
+           
+       })
+       .then(response=>response.json())
+       .catch(err =>{console.log(err)})
+       .then(response =>{ 
+            console.log('tyyyy',response); 
+             
+        });*/
+        //para hacer un scroll hacia la parte de arriba de la pagina
+var storage=document.querySelector('#storage');
+console.log(storage);
 var rise=document.querySelector("#rise");
 rise.addEventListener("click",(e)=>{
     /*document.querySelector("html").style.scrollTop="0px"
@@ -97,3 +119,7 @@ rise.addEventListener("click",(e)=>{
     });
   
 });
+
+function traerUsuario(params) {
+    
+}

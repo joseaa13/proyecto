@@ -3,7 +3,7 @@ var openforum;
 var array=[];
 var div=document.querySelector("#contenido4");  
 openforum=document.querySelector("#openforum");
-openforum.addEventListener("click",(e)=>{
+openforum.addEventListener("click",(e)=>{ //desencadena evento para redirecionar a la parte del foro
     
     var captureboolean=confirm("deseas entrar al foro");
     if(captureboolean==true){
@@ -12,7 +12,7 @@ openforum.addEventListener("click",(e)=>{
     }
 });
 
-
+//evento que limpia la pagina y vuelve y hace la solicitud al backend al ingresar una nueva palabra
 var search=document.querySelector("#formulario");
 //console.log(search);
 search.addEventListener("submit",(e)=>{
@@ -36,10 +36,10 @@ var url='http://localhost:3700/jose/questions/:?text='+text+'';
     .then(response=>{
         console.log("success",response);
         array=[response];
-        probar(response,text);
+        probar(response,text); //va i busca esta funcion donde le paso la respuesta y una palabra
     })
 });
-
+//si encuentra la palabra en la respuesta me creara nuevos elementos para montar las preguntas que me llegan del backend
 function probar (object,buscar){
  var template;
  for (var i=0;i<=object.questions.length;i++) {
@@ -86,7 +86,7 @@ console.log(buscar);
 
  
 }
-
+//para quitar campos 
 function response(iterar){
   var  showanswer="ans_"+iterar;
   console.log(showanswer);
@@ -97,7 +97,7 @@ function response(iterar){
   quitarans.removeAttribute("style");
 
   var probar=document.querySelector("#ans_"+iterar+" img");
-  console.log(probar);
+  console.log(probar);/// abrir una nueva pestaña ocn la imagen
   probar.addEventListener("click",(e)=>{
      // alert("click");
       var url =e.target.src;

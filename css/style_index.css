@@ -5,7 +5,8 @@ body{
     width: 100%;
     /*background: linear-gradient(to bottom,#0076b1, #12A3EB);*/
     /*background-image: linear-gradient(to right, #a8caba 0%, #5d4157 100%);*/
-    background-image: linear-gradient(to right, #f95214 0%, #181818 100%);
+    /*background-image: linear-gradient(to right, #f95214 0%, #181818 100%);*/
+    background-color:#181818 ;
     height: 100px;
     display: flex;
     flex-direction: row;
@@ -134,7 +135,8 @@ header nav a:hover{
     width: 25%;
     background-size: 100% 100%;
     background-repeat:no-repeat;
-    background:url(../imagenes/asideopti.jpg);
+    /*background:url(../imagenes/asideopti5.jpg); rgb(252, 178, 151)*/ /*modific*/
+    background-color: #f95114e1;
     background-size: cover;
     padding-left: 15px;
     border-radius:5px;
@@ -178,6 +180,7 @@ header nav a:hover{
     flex-direction: column;
 }
 .h4_pregun{
+    margin-top: 15px;
     align-self: center;
 }
 .cuadro_pregun{

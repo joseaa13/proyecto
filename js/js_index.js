@@ -6,8 +6,12 @@ var questionprint = '';
 var questions=[];                                        //objecto  para usar 
 //var objectanswer=[];                                  //objeto para las answer sin uso
 //SEARCH 
+
+function traerUsuario(params) {
+    
+}
 var search=document.querySelector("#buscar_1");
-search.addEventListener("click",(e)=>{
+search.addEventListener("click",(e)=>{//redirecionar a otra pagina 
 //alert("s"); 
 //console.log("foco");
 
@@ -23,11 +27,11 @@ form_pregunta.addEventListener('submit', (event) => {
     event.preventDefault();
     console.log('En el submit');
     
-    colocarPregunta();
+    colocarPregunta(); //va y realiza lo de al funcion
 });
 
 openforum=document.querySelector("#openforum");
-openforum.addEventListener("click",(e)=>{
+openforum.addEventListener("click",(e)=>{// evento para abrir el foro en otra pestaña
 
     var captureboolean=confirm("deseas entrar al foro");
     if(captureboolean==true){
@@ -35,24 +39,26 @@ openforum.addEventListener("click",(e)=>{
         window.open("http://localhost/foro/ucp.php?mode=login");
     }
 });
-
+//capturo el valor de la pregutun y lo coloco en el objeto para imprimirlo en la pagina
 function colocarPregunta() {
     //Obtengo la pregunta
     //alert("hola q mas"); 
     var pregunta = document.getElementById("pregunta").value;
     var fecha=new Date().toLocaleDateString();
     element = {question:pregunta, answer:'', date:fecha ,image:''};
-   probar(pregunta,null);
+    probar(pregunta,null);
+   
+   
     if(pregunta.length<=10 || isNaN(pregunta)==false){
         return false;
     }
+    
 
     //console.log(preguntas);
     questions.unshift(element);
     //console.log(questions);
     //var pregunta_newindice=preguntaarray.unshift(pregunta);
-    for(var i=0;i<questions.length;i++){
-        
+    for(var i=0;i<questions.length;i++){//bucle para ir abilitando los botones y almacenar 
         var mostraranswer = questions[i].answer;
         
 
@@ -64,14 +70,15 @@ function colocarPregunta() {
     }
     console.log(pregunta);
     console.log(element.question);
+    
     //console.log(questionprint);
     document.getElementById("contenido3").innerHTML = questionprint;  //mando a la caja 
     questionprint="";
-    
+    //document.querySelector('#pregunta')='';//edit 3/10/20
     
 }
 
-function mostrarinput( iterador){                    //mostar el textarea y el otro buton
+function mostrarinput( iterador){                    //mostar el textarea y el otro buton 
     //alert("coje la funcion"+iterador);
     var texto="texto_"+iterador;
     var newbutton="enviar_"+iterador;
@@ -93,7 +100,7 @@ function mostrarinput( iterador){                    //mostar el textarea y el o
     //texto.innerHTML=newbutton;*/
 }
 
-
+//cojo el cosas del archivo que suben y lo pongo en formdata luego lo envio al backend por aparte
 function guardarrespuesta(iterador){            //
     var texto="texto_"+iterador;
     
@@ -131,7 +138,7 @@ function guardarrespuesta(iterador){            //
    // formdata.append("file".file,file.name);
 
     //alert("hola"+cap_pregunta);
-    //objectanswer[iterador]=cap_pregunta;
+    //objectanswer[iterador]=cap_pregunta; //envio los datos de la pregunta y el nombre de la imagen al backend
     questions[iterador].answer = cap_pregunta;
     element.image=url2;
     element.answer=cap_pregunta;
