@@ -72,7 +72,7 @@ function colocarPregunta() {
     console.log(element.question);
     
     //console.log(questionprint);
-    document.getElementById("contenido3").innerHTML = questionprint;  //mando a la caja 
+    document.getElementById("contenido3").innerHTML = questionprint;         //mando a la caja 
     questionprint="";
     //document.querySelector('#pregunta')='';//edit 3/10/20
     
